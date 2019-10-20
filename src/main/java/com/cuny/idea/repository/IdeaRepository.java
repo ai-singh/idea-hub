@@ -16,12 +16,19 @@ public class IdeaRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public Idea findById(int id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM ideas WHERE cuny_id=?", new Object[] {id}, new BeanPropertyRowMapper<>(Idea.class));
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     public List<Idea> findAll() {
-        return jdbcTemplate.query("SELECT * FROM IDEAS", new IdeaRowMapper());
+        return jdbcTemplate.query("SELECT * FROM ideas", new IdeaRowMapper());
+    }
+
+    public void save(int id, int upvotes) {
+        jdbcTemplate.update("UPDATE ideas set upvotes=" + (upvotes + 1) + "where id=" + id);
+    }
+
+    public void update(int id, int upvotes) {
+        jdbcTemplate.update("UPDATE ideas set upvotes=" + (upvotes - 1) + "where id=" + id);
     }
 }
 

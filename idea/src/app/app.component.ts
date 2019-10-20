@@ -8,20 +8,29 @@ import { Idea } from './idea';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private ideas: Array<Idea>;
+  ideas: Array<Idea>;
   private toggle: boolean;
+  private now: Date = new Date();
 
   constructor(private ideaService: IdeaService) {
 
   }
 
   ngOnInit() {
+    this.getData();
+  }
+
+  public getData() {
     this.ideaService.sendGetRequest().subscribe((data: any[]) => {
       this.ideas = data;
     });
   }
 
   public upvote(event, idea: Idea) {
-    this.toggle = !this.toggle;
+    if(!idea.upvote) {
+      idea.upvotes += 1;
+    }
+    console.log(this.ideaService.sendPostRequest(idea));
+    this.getData();
   }
 }

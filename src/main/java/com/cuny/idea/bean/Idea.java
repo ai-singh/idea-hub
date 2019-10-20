@@ -5,6 +5,24 @@ public class Idea {
     private String title;
     private String description;
     private int upvotes;
+    private boolean upvote;
+    private String postedTime;
+
+    public String getPostedTime() {
+        return postedTime;
+    }
+
+    public void setPostedTime(String postedTime) {
+        this.postedTime = postedTime;
+    }
+
+    public boolean isUpvote() {
+        return upvote;
+    }
+
+    public void setUpvote(boolean upvote) {
+        this.upvote = upvote;
+    }
 
     public int getId() {
         return id;

@@ -1,17 +1,22 @@
 <div style="width: 100%;">
   <mat-card class="example-card" *ngFor="let idea of ideas">
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src="../assets/IMG_2497.jpg" alt="Photo of a Shiba Inu">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{idea.title}}</mat-card-title>
       <mat-card-subtitle>{{idea.id}}</mat-card-subtitle>
+      <div style="text-align: right;">
+        {{idea.postedTime}}
+      </div>
     </mat-card-header>
     <mat-card-content>
       {{idea.description}}
     </mat-card-content>
+    
     <div style="text-align: right;">
-        <img src="../assets/upvote.png" (click)="upvote($event, idea)" *ngIf="toggle"/>
-        <img src="../assets/neutral.png" (click)="upvote($event, idea)" *ngIf="!toggle"/>
+        <img src="../assets/neutral_upvote.png" style="width: 5%;"/><label for="upvote_img">200</label>
+        <!-- <img src="../assets/neutral_upvote.png" (click)="upvote($event, idea)" *ngIf="!idea.upvote"/> -->
+        <img src="../assets/neutral_downvote.png" style="width: 5%;"/><label for="downvote_img">100</label>
+        <!-- <img src="../assets/neutral_downvote.png" (click)="downvote($event, idea)" *ngIf="!idea.downvote"/> -->
     </div>
   </mat-card>
 </div>
